@@ -1,0 +1,6 @@
+ID,Name,Specialization,Hospital,Fee,Experience,Rating,Languages,Availability
+1,Dr. Nuwan Perera,Cardiologist,Singhe Hospital - Colombo,2500,12,4.8,"English, Sinhala","Mon, Wed, Fri"
+2,Dr. Kumari Jayawardena,Pediatrician,Singhe Hospital - Kandy,2000,8,4.9,"English, Sinhala, Tamil","Tue, Thu, Sat"
+3,Dr. Anura Bandara,Dermatologist,Singhe Hospital - Colombo,2200,10,4.7,English,"Mon, Wed, Fri"
+4,Dr. Shanthi Fernando,Gynecologist,Singhe Hospital - Galle,2300,15,4.9,"English, Sinhala","Tue, Thu"
+5,Dr. Rajitha Weerasinghe,Orthopedic,Singhe Hospital - Colombo,2400,11,4.8,"English, Sinhala","Mon, Wed, Fri"

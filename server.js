@@ -383,7 +383,19 @@ function verifyToken(req, res, next) {
 }
 
 // ==================== API ROUTES ====================
-
+// Welcome Route for the base URL
+app.get('/', (req, res) => {
+  res.json({
+    message: "Welcome to the Singhe Health Mock API!",
+    status: "Active",
+    endpoints: [
+      "/api/health",
+      "/api/login",
+      "/api/register",
+      "/api/doctors"
+    ]
+  });
+});
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date() });

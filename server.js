@@ -9,8 +9,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 8000;
-const SECRET_KEY = 'singhe_health_secret_key_2024';
+const PORT = process.env.PORT || 8000;
+// Use environment variable in production, fallback to local secret
+const SECRET_KEY = process.env.JWT_SECRET || 'singhe_health_secret_key_2024';
 
 // ==================== DATA DEFINITIONS ====================
 
@@ -810,17 +811,25 @@ app.get('/api/dashboard/stats', verifyToken, (req, res) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`\n🚀 Mock API Server is running!`);
-  console.log(`📍 URL: http://localhost:${PORT}`);
-  console.log(`\n📝 Test Credentials:`);
-  console.log(`   Mobile: 0771234567`);
-  console.log(`   Password: password123`);
-  console.log(`\n📊 Statistics:`);
-  console.log(`   Total Doctors: ${doctors.length}`);
-  console.log(`   Total Specializations: ${specializations.length}`);
-  console.log(`   Total Hospitals: ${hospitals.length}`);
-  console.log(`   Total Offers: ${redemptionOffers.length}`);
-  console.log(`\n✨ Ready to accept requests!\n`);
-});
+
+// ==================== SERVER STARTUP ====================
+
+// Start server locally, but export for Vercel
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`\n🚀 Mock API Server is running locally!`);
+    console.log(`📍 URL: http://localhost:${PORT}`);
+    console.log(`\n📝 Test Credentials:`);
+    console.log(`   Mobile: 0771234567`);
+    console.log(`   Password: password123`);
+    console.log(`\n📊 Statistics:`);
+    console.log(`   Total Doctors: ${doctors.length}`);
+    console.log(`   Total Specializations: ${specializations.length}`);
+    console.log(`   Total Hospitals: ${hospitals.length}`);
+    console.log(`   Total Offers: ${redemptionOffers.length}`);
+    console.log(`\n✨ Ready to accept requests!\n`);
+  });
+}
+
+// Export the app for Vercel's serverless environment
+module.exports = app;
